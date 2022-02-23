@@ -5,31 +5,30 @@
  * The ASF licenses this file to You under the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
- * 
- *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-package org.apache.linkis.manager.engineplugin.common.conf
 
-import org.apache.linkis.common.conf.{ByteType, CommonVars}
+package org.apache.linkis.jobhistory;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
 
-object EngineConnPluginConf {
+@EnableAutoConfiguration
+@ServletComponentScan
+@ComponentScan
+public class WebApplicationServer extends SpringBootServletInitializer {
 
-  val JAVA_ENGINE_REQUEST_MEMORY = CommonVars[ByteType]("wds.linkis.engineconn.java.driver.memory", new ByteType("1g"))
-
-  val JAVA_ENGINE_REQUEST_CORES = CommonVars[Int]("wds.linkis.engineconn.java.driver.cores", 2)
-
-  val JAVA_ENGINE_REQUEST_INSTANCE = 1
-
-  val ENGINECONN_TYPE_NAME = CommonVars[String]("wds.linkis.engineconn.type.name", "python")
-
-  val ENGINECONN_MAIN_CLASS = CommonVars[String]("wds.linkis.engineconn.main.class", "org.apache.linkis.engineconn.launch.EngineConnServer")
-
+    public static void main(String[] args) {
+        new SpringApplicationBuilder(WebApplicationServer.class).run(args);
+    }
 }
